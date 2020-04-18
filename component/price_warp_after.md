@@ -1,0 +1,43 @@
+@startuml
+
+
+package "FAB 购买按钮组件关系图" {
+
+    [priceUIWrap] --> [priceArea]
+    [priceArea] -- tpl
+    [priceArea] -- originTpl
+    [priceArea] -- prTpl
+    [priceArea] -- ptTpl
+    [priceArea] -- cpTpl
+    originTpl -- 原价逻辑
+    prTpl -- 折扣价原价逻辑
+    ptTpl  -- 砍价相关逻辑
+    cpTpl  -- 优惠相关逻辑
+
+
+    [priceUIWrap] --> [pintuanPriceArea-owner]
+    [priceUIWrap] --> [pintuanPriceArea-noOwner]
+
+
+    [priceArea] --> [priceButton]
+    [pintuanPriceArea-owner] --> [priceButton]
+    [pintuanPriceArea-noOwner] --> [priceButton]
+
+    [priceButton] --> [btnWrap]
+    [btnWrap] --> [paid]
+    [btnWrap] --> [forbidEnroll]
+    [btnWrap] --> [groupBuy]
+    [btnWrap] --> [ordinary]
+    [btnWrap] --> [pintuan-owner]
+    [btnWrap] --> [pintuan-noOwner]
+
+
+    [paid] -- 已购买按钮
+    [forbidEnroll] -- 不可购买按钮
+    [groupBuy] -- 预付活动按钮
+    [ordinary] -- 普通按钮
+    [pintuan-owner] -- 拼团按钮
+    [pintuan-noOwner] -- 拼团按钮
+}
+
+@enduml
