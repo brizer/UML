@@ -1,0 +1,35 @@
+.@startuml
+
+package "YKT-Ploper" {
+  [node-plop]
+  [node-plop] - fetch
+}
+
+node "presetActions" {
+  [node-plop] - runActions
+  runActions - [downloadAction]
+  runActions - [removeCacheAction]
+}
+
+cloud {
+  [Gitlab API]
+}
+
+
+database "Gitlab" {
+  folder 物料库1 {
+    [物料1-1]
+    [物料1-2]
+  }
+  folder 物料库2 {
+    [物料2-1]
+    [物料2-2]
+  }
+}
+
+
+[fetch] --> [Gitlab API]
+[Gitlab API] --> [物料1-1]
+[Gitlab API] --> [物料1-2]
+
+@enduml
